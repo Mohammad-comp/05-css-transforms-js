@@ -24,7 +24,20 @@ const answers = [
   "My reply is no"
 ];
 
-// Event listener for the Magic 8-Ball click.
-document.getElementById("magicBall").addEventListener("click", function() {
-  answer.innerText = answers[Math.floor(Math.random() * answers.length)];
+// Get the Magic 8-Ball element.
+const magicBall = document.getElementById("magicBall");
+let shakeTimer;
+
+// Shake the ball before revealing a new answer.
+magicBall.addEventListener("click", function() {
+  answer.innerText = "";
+  clearTimeout(shakeTimer);
+  magicBall.classList.remove("shaking");
+  magicBall.offsetWidth;
+  magicBall.classList.add("shaking");
+
+  shakeTimer = setTimeout(function() {
+    answer.innerText = answers[Math.floor(Math.random() * answers.length)];
+    magicBall.classList.remove("shaking");
+  }, 800);
 });
